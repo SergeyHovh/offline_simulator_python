@@ -1,32 +1,38 @@
 from material import Material
 from simulator import Simulator
 
-iron = Material(0, 1)
-iron.__set_name__("iron")
 
-ironBar = Material(0, 15)
-ironBar.__set_name__("iron-bar_1")
-ironBar.add_material_to_recipe(iron, 5)
+def main():
+    iron = Material(0, 1)
+    iron.__set_name__("iron")
 
-ironBar2 = Material(0, 8)
-ironBar2.__set_name__("iron-bar_2")
-ironBar2.add_material_to_recipe(iron, 5)
+    iron_bar = Material(0, 15)
+    iron_bar.__set_name__("iron-bar_1")
+    iron_bar.add_material_to_recipe(iron, 5)
 
-ironBolt = Material(0, 10)
-ironBolt.__set_name__("iron-bolt")
-ironBolt.add_material_to_recipe(ironBar, 2)
+    iron_bar2 = Material(0, 8)
+    iron_bar2.__set_name__("iron-bar_2")
+    iron_bar2.add_material_to_recipe(iron, 5)
 
-copper = Material(0, 2)
-copper.__set_name__("copper")
+    iron_bolt = Material(0, 10)
+    iron_bolt.__set_name__("iron-bolt")
+    iron_bolt.add_material_to_recipe(iron_bar, 2)
 
-copperBar = Material(0, 8)
-copperBar.__set_name__("copper-bar")
-copperBar.add_material_to_recipe(copper, 5)
+    copper = Material(0, 2)
+    copper.__set_name__("copper")
 
-plate = Material(0, 30)
-plate.__set_name__("plate")
-plate.add_material_to_recipe(ironBolt, 1)
-plate.add_material_to_recipe(copperBar, 3)
+    copper_bar = Material(0, 8)
+    copper_bar.__set_name__("copper-bar")
+    copper_bar.add_material_to_recipe(copper, 5)
 
-simulator = Simulator(120, [iron, ironBar, ironBar2, ironBolt, copper, copperBar, plate])
-simulator.simulate()
+    plate = Material(0, 30)
+    plate.__set_name__("plate")
+    plate.add_material_to_recipe(iron_bolt, 1)
+    plate.add_material_to_recipe(copper_bar, 3)
+
+    simulator = Simulator(120, [iron, iron_bar, iron_bar2, iron_bolt, copper, copper_bar, plate])
+    simulator.simulate()
+
+
+if __name__ == "__main__":
+    main()
